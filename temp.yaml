@@ -2,7 +2,7 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
   name: eureka-server
-  namespace: team-a-dev
+  namespace: team-d-dev
 spec:
   replicas: 1
   selector:
@@ -10,13 +10,13 @@ spec:
       k8s-app: eureka-server
   template:
     metadata:
-      namespace: team-a-dev
+      namespace: team-d-dev
       labels:
         k8s-app: eureka-server
     spec:
       containers:
       - name: eureka-server
-        image: 076880417388.dkr.ecr.cn-northwest-1.amazonaws.com.cn/team-a:eureka-server-8
+        image: 076880417388.dkr.ecr.cn-northwest-1.amazonaws.com.cn/team-d:eureka-server-8
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
@@ -26,7 +26,7 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  namespace: team-a-dev
+  namespace: team-d-dev
   name: eureka-server
 spec:
   selector:
@@ -40,7 +40,7 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: eureka-server
-  namespace: team-a-dev
+  namespace: team-d-dev
 spec:
   rules:
   - host: eureka.team-d.cloud.school.thoughtworks.cn
